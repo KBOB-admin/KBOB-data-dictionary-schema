@@ -1,10 +1,10 @@
 # NatDD Core Vocabulary
 
-Public review repository for the core RDF vocabulary used to publish Swiss National Data Dictionary (NatDD) data.
+Public review repository for the core RDF vocabulary used to publish National Data Dictionary (NatDD) data.
 
 Status: **0.1 Public Review Draft**
 
-Vocabulary namespace: `https://lindas.admin.ch/fobl/kbob/dd-fm/vocab/`
+Vocabulary namespace: `https://lindas.admin.ch/fobl/kbob/dd-fm/vocab/` **(WILL CHANGE SHORTLY!!!)**
 
 Preferred prefix: `dd`
 
