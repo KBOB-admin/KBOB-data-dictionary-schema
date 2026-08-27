@@ -19,8 +19,6 @@ NatDD follows a reuse-before-invention policy. A `dd:` term is introduced only w
 
 ## Source versus derivation
 
-`prov:wasDerivedFrom` is a PROV-O term, not a Dublin Core term.
-
 ```turtle
 :dictionary-0.1.0
     a dcat:Dataset, dd:DataDictionary, prov:Entity ;
