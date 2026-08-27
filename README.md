@@ -4,7 +4,7 @@ Public review repository for the core RDF vocabulary used to publish National Da
 
 Status: **0.1 Public Review Draft**
 
-Vocabulary namespace: `https://lindas.admin.ch/fobl/kbob/dd-fm/vocab/` **(WILL CHANGE SHORTLY!!!)**
+Vocabulary namespace: `https://lindas.admin.ch/fobl/kbob/dd-fm/vocab/` **(provisional; migration planned after formal namespace approval)**
 
 Preferred prefix: `dd`
 

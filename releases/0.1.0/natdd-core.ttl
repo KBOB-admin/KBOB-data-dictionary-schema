@@ -11,8 +11,8 @@ dd:
     a owl:Ontology ;
     dcterms:title "NatDD Core Vocabulary"@en,
         "NatDD-Kernvokabular"@de ;
-    dcterms:description "Core RDF vocabulary for publishing Swiss National Data Dictionary structures."@en,
-        "RDF-Kernvokabular für die Publikation von Strukturen des Swiss National Data Dictionary."@de ;
+    dcterms:description "Core RDF vocabulary for publishing National Data Dictionary structures."@en,
+        "RDF-Kernvokabular für die Publikation von Strukturen des National Data Dictionary."@de ;
     dcterms:creator <https://www.kbob.admin.ch/> ;
     dcterms:issued "2026-08-26"^^xsd:date ;
     dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;

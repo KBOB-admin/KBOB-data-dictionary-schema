@@ -2,7 +2,7 @@
 
 Status: **Public Review Draft**
 
-NatDD provides the small structural layer that is missing from the standard vocabularies reused by Swiss Data Dictionary publications.
+NatDD provides the small structural layer that is missing from the standard vocabularies reused by National Data Dictionary publications.
 
 ## Model
 
