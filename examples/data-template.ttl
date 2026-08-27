@@ -1,0 +1,45 @@
+@prefix dd: <https://lindas.admin.ch/fobl/kbob/dd-fm/vocab/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://example.org/natdd/> .
+
+ex:dictionary-0.1.0
+    a dcat:Dataset, dd:DataDictionary ;
+    dcterms:title "Example Data Dictionary"@en ;
+    dd:hasClass ex:BicycleParkingArea ;
+    dd:hasProperty ex:documentationReference ;
+    dd:hasGroupOfProperties ex:references ;
+    dd:hasDataTemplate ex:bicycleParkingTemplate .
+
+ex:BicycleParkingArea
+    a rdfs:Class ;
+    rdfs:label "Bicycle parking area"@en .
+
+ex:documentationReference
+    a rdf:Property ;
+    rdfs:label "Documentation reference"@en ;
+    skos:definition "Reference to documentation associated with the asset."@en ;
+    dd:datatype "STRING" .
+
+ex:references
+    a dd:GroupOfProperties ;
+    rdfs:label "References"@en .
+
+ex:bicycleParkingTemplate
+    a dd:DataTemplate ;
+    rdfs:label "Bicycle parking requirements"@en ;
+    dd:appliesToClass ex:BicycleParkingArea ;
+    dd:includesGroupOfProperties ex:references ;
+    dd:hasPropertyRequirement ex:documentationReferenceRequirement .
+
+ex:documentationReferenceRequirement
+    a dd:PropertyRequirement ;
+    dd:requirementOfDataTemplate ex:bicycleParkingTemplate ;
+    dd:requiresProperty ex:documentationReference ;
+    dd:inGroupOfProperties ex:references ;
+    dd:requirementLevel "included" ;
+    dd:contextualDatatype "STRING" .

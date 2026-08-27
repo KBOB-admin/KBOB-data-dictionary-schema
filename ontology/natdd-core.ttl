@@ -1,0 +1,377 @@
+@prefix dd: <https://lindas.admin.ch/fobl/kbob/dd-fm/vocab/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dd:
+    a owl:Ontology ;
+    dcterms:title "NatDD Core Vocabulary"@en,
+        "NatDD-Kernvokabular"@de ;
+    dcterms:description "Core RDF vocabulary for publishing Swiss National Data Dictionary structures."@en,
+        "RDF-Kernvokabular für die Publikation von Strukturen des Swiss National Data Dictionary."@de ;
+    dcterms:creator <https://www.kbob.admin.ch/> ;
+    dcterms:issued "2026-08-26"^^xsd:date ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    owl:versionInfo "0.1.0 Public Review Draft" ;
+    owl:versionIRI <https://lindas.admin.ch/fobl/kbob/dd-fm/vocab/0.1.0/> ;
+    rdfs:comment "Provisional KBOB-scoped namespace. The namespace may migrate following federal schema governance review before version 1.0."@en .
+
+## Core classes
+
+dd:DataDictionary
+    a owl:Class ;
+    rdfs:subClassOf dcat:Dataset ;
+    rdfs:label "Data Dictionary"@en,
+        "Datenwörterbuch"@de ;
+    skos:definition "A versioned publication unit containing governed definitions and requirements for data."@en,
+        "Eine versionierte Publikationseinheit mit geregelten Definitionen und Anforderungen an Daten."@de .
+
+dd:GroupOfProperties
+    a owl:Class ;
+    rdfs:label "Group of Properties"@en,
+        "Merkmalsgruppe"@de ;
+    skos:definition "A logical grouping of Properties within a Data Dictionary."@en,
+        "Eine logische Gruppierung von Merkmalen innerhalb eines Datenwörterbuchs."@de .
+
+dd:EnumerationScheme
+    a owl:Class ;
+    rdfs:subClassOf skos:ConceptScheme ;
+    rdfs:label "Enumeration Scheme"@en,
+        "Enumerationsschema"@de ;
+    skos:definition "A controlled scheme containing the values available to a Property or Property Requirement."@en,
+        "Ein kontrolliertes Schema mit den für ein Merkmal oder eine Merkmalsanforderung verfügbaren Werten."@de .
+
+dd:EnumerationValue
+    a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Enumeration Value"@en,
+        "Enumerationswert"@de ;
+    skos:definition "A single governed value belonging to an Enumeration Scheme."@en,
+        "Ein einzelner geregelter Wert, der zu einem Enumerationsschema gehört."@de .
+
+dd:AllowedValue
+    a owl:Class ;
+    rdfs:subClassOf dd:EnumerationValue ;
+    owl:equivalentClass dd:EnumerationValue ;
+    owl:deprecated true ;
+    rdfs:label "Allowed value (compatibility term)"@en,
+        "Zulässiger Wert (Kompatibilitätsbegriff)"@de ;
+    skos:definition "Deprecated compatibility class retained for data that types enumeration members as AllowedValue; use EnumerationValue for new data."@en,
+        "Veraltete Kompatibilitätsklasse für Daten, die Enumerationselemente als AllowedValue typisieren; für neue Daten ist EnumerationValue zu verwenden."@de .
+
+dd:Document
+    a owl:Class ;
+    rdfs:label "Document"@en,
+        "Dokument"@de ;
+    skos:definition "A document referenced by a Data Dictionary resource."@en,
+        "Ein Dokument, auf das eine Ressource des Datenwörterbuchs verweist."@de .
+
+dd:DocumentType
+    a owl:Class ;
+    rdfs:subClassOf rdfs:Class ;
+    rdfs:label "Document type"@en,
+        "Dokumenttyp"@de ;
+    skos:definition "A terminal class in a document-type taxonomy that identifies an orderable or deliverable kind of document."@en,
+        "Eine terminale Klasse in einer Dokumenttyp-Taxonomie, die eine bestellbare oder lieferbare Art von Dokument bezeichnet."@de .
+
+dd:TaxonomyNode
+    a owl:Class ;
+    rdfs:subClassOf rdfs:Class ;
+    rdfs:label "Taxonomy node"@en,
+        "Taxonomieknoten"@de ;
+    skos:definition "A non-terminal class used to organize other classes in a navigable taxonomy."@en,
+        "Eine nicht-terminale Klasse zur Gliederung weiterer Klassen in einer navigierbaren Taxonomie."@de .
+
+dd:DataTemplate
+    a owl:Class ;
+    rdfs:label "Data Template"@en,
+        "Datenvorlage"@de ;
+    skos:definition "A contextual collection of information requirements that applies to one or more Classes."@en,
+        "Eine kontextbezogene Sammlung von Informationsanforderungen, die für eine oder mehrere Klassen gilt."@de .
+
+dd:PropertyRequirement
+    a owl:Class ;
+    rdfs:label "Property Requirement"@en,
+        "Merkmalsanforderung"@de ;
+    skos:definition "A contextual use of a canonical Property in a Data Template, with optional group, value, datatype, unit and inclusion information."@en,
+        "Die kontextbezogene Verwendung eines kanonischen Merkmals in einer Datenvorlage mit optionalen Angaben zu Gruppe, Wert, Datentyp, Einheit und Einbindung."@de .
+
+## Dictionary composition
+
+dd:hasClass
+    a owl:ObjectProperty ;
+    rdfs:label "has class"@en,
+        "hat Klasse"@de ;
+    rdfs:domain dd:DataDictionary ;
+    rdfs:range rdfs:Class .
+
+dd:hasProperty
+    a owl:ObjectProperty ;
+    rdfs:label "has property"@en,
+        "hat Merkmal"@de ;
+    rdfs:domain dd:DataDictionary ;
+    rdfs:range rdf:Property .
+
+dd:hasGroupOfProperties
+    a owl:ObjectProperty ;
+    rdfs:label "has group of properties"@en,
+        "hat Merkmalsgruppe"@de ;
+    rdfs:domain dd:DataDictionary ;
+    rdfs:range dd:GroupOfProperties .
+
+dd:hasEnumerationScheme
+    a owl:ObjectProperty ;
+    rdfs:label "has enumeration scheme"@en,
+        "hat Enumerationsschema"@de ;
+    rdfs:domain dd:DataDictionary ;
+    rdfs:range dd:EnumerationScheme .
+
+dd:hasDocument
+    a owl:ObjectProperty ;
+    rdfs:label "has document"@en,
+        "hat Dokument"@de ;
+    rdfs:domain dd:DataDictionary ;
+    rdfs:range dd:Document .
+
+dd:hasDataTemplate
+    a owl:ObjectProperty ;
+    rdfs:label "has data template"@en,
+        "hat Datenvorlage"@de ;
+    rdfs:domain dd:DataDictionary ;
+    rdfs:range dd:DataTemplate .
+
+## Enumeration structure
+
+dd:usesEnumerationScheme
+    a owl:ObjectProperty ;
+    rdfs:label "uses enumeration scheme"@en,
+        "verwendet Enumerationsschema"@de ;
+    rdfs:range dd:EnumerationScheme ;
+    skos:definition "Connects a Property or Property Requirement to the Enumeration Scheme governing its available values."@en .
+
+dd:enumerationSchemeForProperty
+    a owl:ObjectProperty ;
+    rdfs:label "enumeration scheme for property"@en,
+        "Enumerationsschema für Merkmal"@de ;
+    rdfs:domain dd:EnumerationScheme ;
+    rdfs:range rdf:Property ;
+    skos:definition "Connects an Enumeration Scheme to the canonical Property for which it defines values."@en .
+
+dd:hasEnumerationValue
+    a owl:ObjectProperty ;
+    rdfs:label "has enumeration value"@en,
+        "hat Enumerationswert"@de ;
+    rdfs:domain dd:EnumerationScheme ;
+    rdfs:range dd:EnumerationValue .
+
+dd:hasAllowedValue
+    a owl:ObjectProperty ;
+    rdfs:label "has allowed value"@en,
+        "hat zulässigen Wert"@de ;
+    rdfs:range dd:EnumerationValue ;
+    skos:definition "Connects a canonical Property to a governed Enumeration Value available for that Property."@en .
+
+dd:valueOfProperty
+    a owl:ObjectProperty ;
+    rdfs:label "value of property"@en,
+        "Wert von Merkmal"@de ;
+    rdfs:domain dd:EnumerationValue ;
+    rdfs:range rdf:Property ;
+    owl:inverseOf dd:hasAllowedValue .
+
+dd:enumerationPosition
+    a owl:DatatypeProperty ;
+    rdfs:label "enumeration position"@en,
+        "Enumerationsposition"@de ;
+    rdfs:domain dd:EnumerationValue ;
+    rdfs:range xsd:integer ;
+    skos:definition "The one-based position of an Enumeration Value in the published source ordering."@en .
+
+## Data Templates and contextual requirements
+
+dd:appliesToClass
+    a owl:ObjectProperty ;
+    rdfs:label "applies to class"@en,
+        "gilt für Klasse"@de ;
+    rdfs:range rdfs:Class .
+
+dd:includesGroupOfProperties
+    a owl:ObjectProperty ;
+    rdfs:label "includes group of properties"@en,
+        "enthält Merkmalsgruppe"@de ;
+    rdfs:domain dd:DataTemplate ;
+    rdfs:range dd:GroupOfProperties .
+
+dd:referencesDocument
+    a owl:ObjectProperty ;
+    rdfs:label "references document"@en,
+        "referenziert Dokument"@de ;
+    rdfs:range dd:Document .
+
+dd:documentItemReference
+    a owl:DatatypeProperty ;
+    rdfs:label "document item reference"@en,
+        "Dokument-Teilreferenz"@de ;
+    rdfs:domain dd:Document ;
+    rdfs:range xsd:string ;
+    skos:definition "A source-defined item, clause or section reference within a Document."@en,
+        "Eine quellenspezifische Referenz auf ein Element, eine Klausel oder einen Abschnitt innerhalb eines Dokuments."@de .
+
+dd:hasPropertyRequirement
+    a owl:ObjectProperty ;
+    rdfs:label "has property requirement"@en,
+        "hat Merkmalsanforderung"@de ;
+    rdfs:domain dd:DataTemplate ;
+    rdfs:range dd:PropertyRequirement .
+
+dd:requirementOfDataTemplate
+    a owl:ObjectProperty ;
+    rdfs:label "requirement of data template"@en,
+        "Anforderung der Datenvorlage"@de ;
+    rdfs:domain dd:PropertyRequirement ;
+    rdfs:range dd:DataTemplate ;
+    owl:inverseOf dd:hasPropertyRequirement .
+
+dd:requiresProperty
+    a owl:ObjectProperty ;
+    rdfs:label "requires property"@en,
+        "fordert Merkmal"@de ;
+    rdfs:domain dd:PropertyRequirement ;
+    rdfs:range rdf:Property .
+
+dd:requiredByTemplate
+    a owl:ObjectProperty ;
+    rdfs:label "required by template"@en,
+        "von Datenvorlage gefordert"@de ;
+    rdfs:domain rdf:Property ;
+    rdfs:range dd:PropertyRequirement ;
+    owl:inverseOf dd:requiresProperty .
+
+dd:inGroupOfProperties
+    a owl:ObjectProperty ;
+    rdfs:label "in group of properties"@en,
+        "in Merkmalsgruppe"@de ;
+    rdfs:domain dd:PropertyRequirement ;
+    rdfs:range dd:GroupOfProperties .
+
+dd:allowedValue
+    a owl:ObjectProperty ;
+    rdfs:label "allowed value"@en,
+        "zulässiger Wert"@de ;
+    rdfs:domain dd:PropertyRequirement ;
+    rdfs:range dd:EnumerationValue ;
+    skos:definition "An Enumeration Value allowed in the context of a particular Property Requirement."@en .
+
+dd:usesCompleteValueScheme
+    a owl:DatatypeProperty ;
+    rdfs:label "uses complete value scheme"@en,
+        "verwendet vollständiges Werteschema"@de ;
+    rdfs:domain dd:PropertyRequirement ;
+    rdfs:range xsd:boolean ;
+    skos:definition "True when the Property Requirement uses the complete Enumeration Scheme rather than an explicit subset."@en .
+
+dd:inclusionMarker
+    a owl:DatatypeProperty ;
+    rdfs:label "inclusion marker"@en,
+        "Einbindungskennzeichen"@de ;
+    rdfs:domain dd:PropertyRequirement ;
+    rdfs:range xsd:string ;
+    skos:definition "The normalized source marker from which the contextual Property Requirement was generated."@en .
+
+dd:requirementLevel
+    a owl:DatatypeProperty ;
+    rdfs:label "requirement level"@en,
+        "Anforderungsstufe"@de ;
+    rdfs:domain dd:PropertyRequirement ;
+    rdfs:range xsd:string ;
+    skos:definition "The published inclusion level of a Property Requirement; it does not by itself assert SHACL or IDS cardinality."@en .
+
+dd:contextualDatatype
+    a owl:DatatypeProperty ;
+    rdfs:label "contextual datatype"@en,
+        "kontextbezogener Datentyp"@de ;
+    rdfs:domain dd:PropertyRequirement ;
+    rdfs:range xsd:string .
+
+dd:contextualUnit
+    a rdf:Property ;
+    rdfs:label "contextual unit"@en,
+        "kontextbezogene Einheit"@de ;
+    rdfs:domain dd:PropertyRequirement ;
+    skos:definition "The unit applicable to a Property in the context of a particular Property Requirement. A governed unit IRI is preferred; a source literal may be retained when no unit IRI has been resolved."@en .
+
+## Property and alignment metadata
+
+dd:datatype
+    a owl:DatatypeProperty ;
+    rdfs:label "datatype"@en,
+        "Datentyp"@de ;
+    rdfs:range xsd:string ;
+    skos:definition "The published base datatype of a Property."@en .
+
+dd:ifcDatatype
+    a owl:DatatypeProperty ;
+    rdfs:label "IFC datatype"@en,
+        "IFC-Datentyp"@de ;
+    rdfs:range xsd:string .
+
+dd:alignedWithIfcPset
+    a owl:ObjectProperty ;
+    rdfs:label "aligned with IFC property set"@en,
+        "mit IFC Property Set abgeglichen"@de ;
+    rdfs:subPropertyOf rdfs:seeAlso .
+
+dd:ifcObjectEntity
+    a owl:ObjectProperty ;
+    rdfs:label "IFC object entity"@en,
+        "IFC-Objektentität"@de ;
+    rdfs:subPropertyOf rdfs:seeAlso .
+
+dd:ifcPredefinedType
+    a owl:ObjectProperty ;
+    rdfs:label "IFC predefined type"@en,
+        "IFC Predefined Type"@de ;
+    rdfs:subPropertyOf rdfs:seeAlso .
+
+dd:dictionaryRecord
+    a owl:ObjectProperty ;
+    rdfs:label "dictionary record"@en,
+        "Datenwörterbuch-Eintrag"@de ;
+    rdfs:subPropertyOf rdfs:seeAlso ;
+    skos:definition "Links a resource to its externally managed registry or catalogue record."@en .
+
+## Governance and information-delivery metadata
+
+dd:status
+    a owl:DatatypeProperty ;
+    rdfs:label "status"@en,
+        "Status"@de ;
+    rdfs:range xsd:string .
+
+dd:revision
+    a owl:DatatypeProperty ;
+    rdfs:label "revision"@en,
+        "Revision"@de ;
+    rdfs:range xsd:string .
+
+dd:loinMilestone
+    a owl:DatatypeProperty ;
+    rdfs:label "LOIN milestone"@en,
+        "LOIN-Meilenstein"@de ;
+    rdfs:range xsd:string .
+
+dd:loinRole
+    a owl:DatatypeProperty ;
+    rdfs:label "LOIN role"@en,
+        "LOIN-Rolle"@de ;
+    rdfs:range xsd:string .
+
+dd:loinUsecase
+    a owl:DatatypeProperty ;
+    rdfs:label "LOIN use case"@en,
+        "LOIN-Anwendungsfall"@de ;
+    rdfs:range xsd:string .
