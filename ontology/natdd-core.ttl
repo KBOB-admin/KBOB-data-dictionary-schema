@@ -26,7 +26,7 @@ dd:DataDictionary
     a owl:Class ;
     rdfs:subClassOf dcat:Dataset ;
     rdfs:label "Data Dictionary"@en,
-        "Datenwörterbuch"@de ;
+        "Data Dictionary"@de ;
     skos:definition "A versioned publication unit containing governed definitions and requirements for data."@en,
         "Eine versionierte Publikationseinheit mit geregelten Definitionen und Anforderungen an Daten."@de .
 
