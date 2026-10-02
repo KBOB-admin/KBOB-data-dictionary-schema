@@ -2,7 +2,18 @@
 
 Public review repository for the core RDF vocabulary used to publish National Data Dictionary (NatDD) data.
 
-Status: **0.1 Public Review Draft**
+Status: **Public technical consultation / öffentliche Fachkonsultation — 2026**
+
+The consultation is open to all interested participants. KBOB will also invite a
+small group of specialists in metadata schemas, Linked Data, BIM
+standardisation, and data-dictionary implementation to review the proposal.
+
+- Consultation baseline: to be tagged `v0.2.0-consultation-2026` when this setup is approved
+- Submission deadline: **31 December 2026, 23:59 CET**
+- Working languages: **English and German**
+- Process and schedule: [`CONSULTATION.md`](CONSULTATION.md)
+- Governance and human-accountability rules: [`GOVERNANCE.md`](GOVERNANCE.md)
+- How to contribute: [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
 Vocabulary namespace: `https://lindas.admin.ch/fobl/kbob/dd-fm/vocab/` **(provisional; migration planned after formal namespace approval)**
 
@@ -49,7 +60,14 @@ python3 scripts/check_vocabulary.py
 
 ## Feedback
 
-Please use GitHub issues for review comments. Breaking changes are permitted during the `0.x` public-review phase and will be recorded in the changelog.
+Use the structured GitHub consultation form for comments. Concrete amendments
+may additionally be proposed through pull requests linked to a consultation
+issue. An offline CSV comment sheet is available at
+[`docs/consultation-comment-sheet.csv`](docs/consultation-comment-sheet.csv).
+
+Pull requests are proposals; only a recorded consultation decision authorises a
+merge. Breaking changes are permitted during the `0.x` public-review phase and
+will be recorded in the changelog.
 
 ## License
 

@@ -3,6 +3,12 @@
 ## Unreleased
 
 - Removed the geographic qualifier from current National Data Dictionary descriptions.
+- Use `Data Dictionary` as the preferred German label for the core class.
+- Added the 2026 public technical consultation process, governance, contribution
+  templates, human-accountability policy for AI-assisted submissions, and
+  consultation registers.
+- Made validation release-aware: immutable release snapshots are checksum-
+  protected while the current ontology may evolve after release 0.1.0.
 
 ## 0.1.0 — 2026-08-26
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import hashlib
 import sys
 
 try:
@@ -10,9 +11,12 @@ except ImportError as exc:
 
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT = ROOT / "ontology" / "natdd-core.ttl"
-SNAPSHOT = ROOT / "releases" / "0.1.0" / "natdd-core.ttl"
 EXAMPLE = ROOT / "examples" / "data-template.ttl"
 BASE = "https://lindas.admin.ch/fobl/kbob/dd-fm/vocab/"
+RELEASE_HASHES = {
+    ROOT / "releases" / "0.1.0" / "natdd-core.ttl":
+        "5fa610376f600f3a966daf86204afddcffb758ec6bebeeb45730687d62023b92",
+}
 FORBIDDEN = (
     "ConceptUsage",
     "usageSubject",
@@ -30,15 +34,18 @@ def fail(message: str) -> None:
     raise SystemExit(1)
 
 
-for path in (CURRENT, SNAPSHOT, EXAMPLE):
+for path in (CURRENT, EXAMPLE, *RELEASE_HASHES):
     if not path.is_file():
         fail(f"missing {path.relative_to(ROOT)}")
     graph = Graph()
     graph.parse(path, format="turtle")
     print(f"parsed {path.relative_to(ROOT)}: {len(graph)} triples")
 
-if CURRENT.read_bytes() != SNAPSHOT.read_bytes():
-    fail("current ontology and 0.1.0 snapshot differ")
+for path, expected_hash in RELEASE_HASHES.items():
+    actual_hash = hashlib.sha256(path.read_bytes()).hexdigest()
+    if actual_hash != expected_hash:
+        fail(f"immutable release changed: {path.relative_to(ROOT)}")
+    print(f"verified immutable release: {path.relative_to(ROOT)}")
 
 text = CURRENT.read_text(encoding="utf-8")
 for token in FORBIDDEN:

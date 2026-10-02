@@ -1,0 +1,106 @@
+name: Consultation comment / Konsultationseingabe
+description: Submit one review comment or change request for the NatDD schema.
+title: "[Consultation]: "
+labels:
+  - "status: new"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit one subject per issue. German or English is accepted. Contributions are public.
+        Bitte nur ein Thema pro Eingabe erfassen. Deutsch oder Englisch ist zulässig. Eingaben sind öffentlich.
+  - type: input
+    id: submitter
+    attributes:
+      label: Submitter / Einreichende Person
+      description: Human participant responsible for this submission.
+    validations:
+      required: true
+  - type: input
+    id: capacity
+    attributes:
+      label: Organisation or capacity / Organisation oder Funktion
+      description: State whether this is a personal or organisational contribution.
+    validations:
+      required: true
+  - type: input
+    id: affected
+    attributes:
+      label: Affected term or section / Betroffener Begriff oder Abschnitt
+      placeholder: "IRI, class, property, file, or section"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category / Kategorie
+      options:
+        - Semantic or normative / Semantisch oder normativ
+        - Technical or interoperability / Technisch oder Interoperabilität
+        - Editorial / Redaktionell
+        - Governance or documentation / Governance oder Dokumentation
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current model or wording / Heutiges Modell oder Wortlaut
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Identified problem / Festgestelltes Problem
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change / Änderungsvorschlag
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale and practical use case / Begründung und Anwendungsfall
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Compatibility and migration impact / Kompatibilität und Migration
+      description: State breaking, non-breaking, or unknown and explain why.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Supporting references / Referenzen
+      description: Standards, implementations, examples, or other evidence.
+  - type: dropdown
+    id: ai
+    attributes:
+      label: Material AI assistance / Wesentliche KI-Unterstützung
+      options:
+        - None / Keine
+        - Drafting / Redaktion
+        - Translation / Übersetzung
+        - Schema analysis / Schemaanalyse
+        - Code generation / Codegenerierung
+        - Other — explain below / Andere — unten erläutern
+    validations:
+      required: true
+  - type: textarea
+    id: ai_details
+    attributes:
+      label: AI details / Angaben zur KI-Unterstützung
+      description: Briefly identify the assistance when applicable.
+  - type: checkboxes
+    id: accountability
+    attributes:
+      label: Human accountability / Menschliche Verantwortung
+      options:
+        - label: I personally reviewed and understood this submission, remain responsible for it, and can explain and defend it before the expert group when requested. / Ich habe diese Eingabe persönlich geprüft und verstanden, übernehme die Verantwortung und kann sie bei Bedarf vor der Expertengruppe erläutern und vertreten.
+          required: true
+        - label: I have the right to submit this material under the repository's CC0 licence. / Ich darf dieses Material unter der CC0-Lizenz des Repositorys einreichen.
+          required: true

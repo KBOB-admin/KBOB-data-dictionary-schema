@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Consultation process / Konsultationsprozess
+    url: https://github.com/KBOB-admin/KBOB-data-dictionary-schema/blob/main/CONSULTATION.md
+    about: Read the process, scope, and schedule before submitting.
