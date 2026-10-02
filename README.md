@@ -14,6 +14,7 @@ standardisation, and data-dictionary implementation to review the proposal.
 - Process and schedule: [`CONSULTATION.md`](CONSULTATION.md)
 - Governance and human-accountability rules: [`GOVERNANCE.md`](GOVERNANCE.md)
 - How to contribute: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- Maintainer launch checklist: [`docs/github-consultation-admin-checklist.md`](docs/github-consultation-admin-checklist.md)
 
 Vocabulary namespace: `https://lindas.admin.ch/fobl/kbob/dd-fm/vocab/` **(provisional; migration planned after formal namespace approval)**
 
